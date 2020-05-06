@@ -11,6 +11,8 @@ services:
       - redis:redis
     extra_hosts:
       - "local.zz.com:${NGINX_IP}"
+    environment:
+      TZ: Asia/Shanghai
     networks:
       docker_net:
         ipv4_address: ${NODE_IP}
@@ -27,7 +29,7 @@ services:
     links:
       - php:fpm
     environment:
-      - TZ=Asia/Shanghai
+      TZ: Asia/Shanghai
     networks:
       docker_net:
         ipv4_address: ${NGINX_IP}
@@ -44,6 +46,8 @@ services:
     links:
       - mysql:mysql
       - redis:redis
+    environment:
+      TZ: Asia/Shanghai
     networks:
       docker_net:
         ipv4_address: ${PHP_IP}
@@ -57,6 +61,7 @@ services:
       - ./mysql/data:/var/lib/mysql/:rw,cached
       - ./log/mysql/:/var/log/mysql/:rw,cached
     environment:
+      TZ: Asia/Shanghai
       MYSQL_ROOT_PASSWORD: "123456"
     networks:
       docker_net:
@@ -68,6 +73,8 @@ services:
       - "6379:6379"
     volumes:
       - ./redis:/data
+    environment:
+      TZ: Asia/Shanghai
     command:
       redis-server --requirepass scztskj
     networks:
