@@ -101,4 +101,6 @@ RUN apt-get update \
 # Composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin/ --filename=composer
 
+# Xdebug
+RUN pecl install xdebug && docker-php-ext-enable xdebug
 # CMD [ "php", "/var/www/html/api/artisan", "queue:work", "--queue=default,listeners"]
