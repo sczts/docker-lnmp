@@ -1,3 +1,4 @@
 *
 !certs
 !.gitignore
+!example.com.conf
